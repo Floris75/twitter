@@ -1,0 +1,32 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "Clone of twitter",
+  "main": "./src/server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node ./src/server.js",
+    "watch": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Floris75/twitter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Floris75/twitter/issues"
+  },
+  "homepage": "https://github.com/Floris75/twitter#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "node-sass-middleware": "^0.11.0"
+  }
+}
