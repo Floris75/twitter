@@ -47,11 +47,9 @@
   &-title {
       display: flex;
       align-items: center;
-      z-index: 99;
       padding-left: 1.5%;
-      width: 49vw;
+      justify-content: center;
       height: 10vh;
-      position: fixed;
       border-bottom: 1px solid gray;
       background-color: #16212b;
   }
@@ -94,10 +92,10 @@
       }
   }
   &-profile {
+      overflow: hidden;
       width: 100%;
       display: flex;
       flex-direction: column;
-      margin-top: 10vh;
       position: relative;
       &-background {
           height: 25vh;
@@ -115,8 +113,7 @@
       }
       &-infos {
           height: 25vh;
-          padding: 10vh 3%;
-          border-bottom: 1px solid grey;
+          margin: 10% 2% 0 2%;
       }
   }
 }
@@ -124,8 +121,17 @@
 .comments {
   &-comment {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 3%;
+      &:first-child {
+        border-top: 1px solid grey;
+      }
       border-bottom: 1px solid grey;
+      & > div:first-child {
+          display: flex;
+          align-items: center;
+      }
       a {
           text-decoration: none;
       }
@@ -137,9 +143,10 @@
       &-content {
           margin-left: 3%;
           min-width: 80%;
-          max-width: 80%;
+          max-width: 100%;
           &-nameDate {
               display: flex;
+              flex-direction: column;
           }
           a {
               text-decoration: none;
@@ -161,6 +168,23 @@
           }
       }
   }
+}
+
+.button-update {
+    display: flex;
+    justify-content: space-around;
+    & form {
+        margin: auto 5px;
+        & input {
+            background-color: #1DA1F2;
+            border: 2px solid white;
+            border-radius: 30%;
+            color: white;
+            &:hover {
+                background-color: #3d5566;
+            }
+        }
+    }
 }
 
 .tweet-search {

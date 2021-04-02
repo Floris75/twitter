@@ -48,11 +48,9 @@
 .tweet-container-title {
   display: flex;
   align-items: center;
-  z-index: 99;
   padding-left: 1.5%;
-  width: 49vw;
+  justify-content: center;
   height: 10vh;
-  position: fixed;
   border-bottom: 1px solid gray;
   background-color: #16212b;
 }
@@ -95,10 +93,10 @@
   cursor: pointer;
 }
 .tweet-container-profile {
+  overflow: hidden;
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 10vh;
   position: relative;
 }
 .tweet-container-profile-background {
@@ -117,14 +115,22 @@
 }
 .tweet-container-profile-infos {
   height: 25vh;
-  padding: 10vh 3%;
-  border-bottom: 1px solid grey;
+  margin: 10% 2% 0 2%;
 }
 
 .comments-comment {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 3%;
   border-bottom: 1px solid grey;
+}
+.comments-comment:first-child {
+  border-top: 1px solid grey;
+}
+.comments-comment > div:first-child {
+  display: flex;
+  align-items: center;
 }
 .comments-comment a {
   text-decoration: none;
@@ -137,10 +143,11 @@
 .comments-comment-content {
   margin-left: 3%;
   min-width: 80%;
-  max-width: 80%;
+  max-width: 100%;
 }
 .comments-comment-content-nameDate {
   display: flex;
+  flex-direction: column;
 }
 .comments-comment-content a {
   text-decoration: none;
@@ -161,6 +168,23 @@
   line-height: 1.5rem;
 }
 
+.button-update {
+  display: flex;
+  justify-content: space-around;
+}
+.button-update form {
+  margin: auto 5px;
+}
+.button-update form input {
+  background-color: #1DA1F2;
+  border: 2px solid white;
+  border-radius: 30%;
+  color: white;
+}
+.button-update form input:hover {
+  background-color: #3d5566;
+}
+
 .tweet-search {
   width: 25vw;
   height: 100%;
@@ -179,9 +203,25 @@
   margin: 5vh 0;
 }
 .home-error {
-  padding-top: 2%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
   color: #e0245e;
+  width: 100%;
   font-weight: normal;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.home-error h3 {
+  margin: 5px 0;
+}
+.home-error button {
+  background-color: white;
+  border-color: orange;
+  transform: scale(1.2);
+  border-radius: 10px;
 }
 
 .form {
@@ -233,6 +273,10 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+}
+
+#erreur {
+  background-color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

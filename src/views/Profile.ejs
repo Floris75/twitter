@@ -20,64 +20,101 @@
           <img src="/images/home-run.png" alt="">
           <h2>Home</h2>
         </a>
-        <a href="">
+        <!-- <a href="">
           <img src="/images/hastag.png" alt="">
           <h2>Explore</h2>
         </a>
         <a href="">
           <img src="/images/bookmark.png" alt="">
           <h2>Bookmarks</h2>
-        </a>
-        <a href="/username">
-          <img src="/images/user.png" alt="">
-          <h2>My Tweets</h2>
-        </a>
-        <a href="/logout">
-          <img src="/images/logout.png" alt="">
-          <h2>Logout</h2>
-        </a>
+        </a> -->
+        <% if (statut === "user") { %>
+          <a href=" /myAccount">
+            <img src="/images/user.png" alt="">
+            <h2>My Tweets</h2>
+          </a>
+            <a href="/logout">
+              <img src="/images/logout.png"  alt="">
+              <h2>Logout</h2>
+            </a>
+          <% } 
+          else { %>
+            <a href="/login">
+              <img src="/images/logout.png" id="login" alt="">
+              <h2>Login</h2>
+            </a>
+          <% }%>
       </div>
     </div>
 
     <div class="tweet-container">
         <div class="tweet-container-title">
-            <h3>Laurent Jade</h3>
+            <h3>
+              <%= `${tweets[0].first_name} ${tweets[0].last_name}` %>
+            </h3>
         </div>
         <div class="tweet-container-profile">
             <div class="tweet-container-profile-background">
-            <img src="" alt="">
+            <img src="/images/banner.jpeg" alt="banner">
             </div>
             <div class="tweet-container-profile-picture">
-            <img src="" alt="">
+            <img src="/images/logo.png" alt="logo">
             </div>
             <div class="tweet-container-profile-infos">
-            <h3>Laurent Jade</h3>
-            <h4>@laurent_jade</h4>
-            <p>Paris</p>
+            <h3><%= `${tweets[0].first_name} ${tweets[0].last_name}` %></h3>
+            <h4>@<%= tweets[0].username %></h4>
+            <p><%= tweets[0].city %></p>
             </div>
         </div>
 
         <div class="comments">
-            <% tweets.forEach((tweet) => { %>
+            <% if (!update) {
+              tweets.forEach((tweet) => { %>
                 <div class="comments-comment">
-                    <a href="<%= `/username/${tweet.user_id}` %>"><img src="/images/Bleu.png" alt=""></a>
+                  <div>
+                    <a href=<% if (owner) {%>"/myAccount" <% } else { %> "<%= `/profile/${tweet.username}` %>" <% } %> >
+                      <img src="/images/logo.png" alt="logo">
+                    </a>
                     <div class="comments-comment-content">
                         <div class="comments-comment-content-nameDate">
-                            <a href="<%= `/username/${tweet.user_id}` %>">
+                          <a href=<% if (owner) {%>"/myAccount" <% } else { %> "<%= `/profile/${tweet.username}` %>" <% } %> >
                                 <h3 class="comments-comment-content-username">
-                                    <%= tweet.username %>
+                                      <%= tweet.username %>    
                                 </h3>
                             </a>
                             <span class="comments-comment-content-date"> 
-                                <%= tweet.creation_date %>
+                                <%= tweet.date %>
                             </span>
                         </div>
                         <p class="comments-comment-content-text"> 
+                          <a href=<% if (owner) {%>"<%= `/myAccount/${tweet.tweet_id}` %>" <% } else { %> "<%= `/profile/${tweet.username}/${tweet.tweet_id}` %>" <% } %> >
                             <%= tweet.text %>
+                          </a>
                         </p>
                     </div>
+                  </div>
+                    <% if (owner) { %>
+                      <div class="button-update">
+                        <form action="<%= `/myAccount/${tweet.id}/update` %>" method="GET">
+                          <input type="submit" value="Modify">
+                        </form>
+                        <form action="<%= `/myAccount/${tweet.id}/delete` %>" method="GET">
+                          <input type="submit" formmethod="delete" value="Delete">
+                        </form>
+                      </div>
+                    <% } %>
                 </div>
-            <% }); %>
+            <% }); 
+          } 
+          else {%>
+            <div class="comments-comment">
+              <form action="<%= `/myAccount/${tweets[0].id}/update` %>" method="POST">
+                <label for="text">Tweet :</label>
+                <textarea name="text" cols="30" rows="10"><%= tweets[0].text %></textarea>
+                <input type="submit" value="Update">
+              </form>
+            </div>
+          <% } %>
         </div>
 
     </div>

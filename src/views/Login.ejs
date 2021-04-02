@@ -14,7 +14,13 @@
   <div class="home">
     <img class="home-image" src="/images/logoTwitter.png" alt="logoTwitter">
     <h1 class="home-title">Connect on Twitter</h1>
-    <h3 class="home-error">error</h3>
+    <% if (erreurs !== undefined && erreurs !== {}) {
+      erreurs.forEach((erreur) => { %>
+      <div class="home-error">
+        <h3><%= erreur %></h3>
+        <button class="close-button"> X </button>
+      </div>
+    <% })} %>
   </div>
 
   <form action="/login" method="POST" class="form">
@@ -34,6 +40,7 @@
       <a href="/signup">Register on Twitter</a>
     </div>
   </form>
+  <script src="/static/extra.js"></script>
 </body>
 
 </html>

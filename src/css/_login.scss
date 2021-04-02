@@ -10,9 +10,25 @@
       margin: 5vh 0;
   }
   &-error {
-      padding-top: 2%;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
       color: #e0245e;
+      width: 100%;
       font-weight: normal;
+      border: 2px solid orange;
+      border-radius: 10px;
+      & h3 {
+          margin: 5px 0;
+      }
+      & button {
+          background-color: white;
+          border-color: orange;
+          transform: scale(1.2);
+          border-radius: 10px;
+      }
   }
 }
 

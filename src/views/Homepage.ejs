@@ -20,22 +20,31 @@
           <img src="/images/home-run.png" alt="">
           <h2>Home</h2>
         </a>
-        <a href="">
+        <!-- <a href="">
           <img src="/images/hastag.png" alt="">
           <h2>Explore</h2>
         </a>
         <a href="">
           <img src="/images/bookmark.png" alt="">
           <h2>Bookmarks</h2>
-        </a>
-        <a href="/username">
+        </a> -->
+        <% if (statut === "user") { %>
+        <a href="/myAccount">
           <img src="/images/user.png" alt="">
           <h2>My Tweets</h2>
         </a>
-        <a href="/logout">
-          <img src="/images/logout.png" alt="">
-          <h2>Logout</h2>
-        </a>
+          <a href="/logout">
+            <img src="/images/logout.png"  alt="">
+            <h2>Logout</h2>
+          </a>
+          <%= user.username %>
+        <% } 
+        else { %>
+          <a href="/login">
+            <img src="/images/logout.png" id="login" alt="">
+            <h2>Login</h2>
+          </a>
+        <% }%>
       </div>
     </div>
 
@@ -43,33 +52,33 @@
       <div class="tweet-container-title">
         <h3>Home</h3>
       </div>
-      <form action="/tweet" method="post" class="tweet-container-form">
-        <div class="tweet-container-message">
-          <label for="message"></label>
-          <div class="tweet-container-text">
-            <textarea name="message" id="message" placeholder="Whats's happening ?"></textarea>
+      <% if (statut === "user") {%> 
+        <form action="/tweet" method="post" class="tweet-container-form">
+          <div class="tweet-container-message">
+            <label for="text"></label>
+            <div class="tweet-container-text">
+              <textarea name="text" id="message" placeholder="Whats's happening ?"></textarea>
+            </div>
           </div>
-
-        </div>
-        <div class="tweet-container-button">
-          <button type="submit" class="tweet-button">Tweet</button>
-        </div>
-
-      </form>
+          <div class="tweet-container-button">
+            <button type="submit" class="tweet-button">Tweet</button>
+          </div>
+        </form>
+      <% } %>
 
         <div class="comments">
             <% tweets.forEach((tweet) => { %>
                 <div class="comments-comment">
-                    <a href="<%= `/username/${tweet.user_id}` %>"><img src="/images/Bleu.png" alt=""></a>
+                    <a href="<%= `/profile/${tweet.username}` %>"><img src="/images/logo.png" alt="logo"></a>
                     <div class="comments-comment-content">
                         <div class="comments-comment-content-nameDate">
-                            <a href="<%= `/username/${tweet.user_id}` %>">
+                            <a href="<%= `/profile/${tweet.username}` %>">
                                 <h3 class="comments-comment-content-username">
                                     <%= tweet.username %>
                                 </h3>
                             </a>
                             <span class="comments-comment-content-date"> 
-                                <%= tweet.creation_date %>
+                                <%= tweet.date %>
                             </span>
                         </div>
                         <p class="comments-comment-content-text"> 

@@ -15,6 +15,13 @@
   <div class="home">
     <img class="home-image" src="/images/logoTwitter.png" alt="logoTwitter">
     <h1 class="home-title">Create your account</h1>
+    <% if (erreurs !== undefined && erreurs !== {}) {
+      erreurs.forEach((erreur) => { %>
+        <div class="home-error">
+          <h3><%= erreur %></h3>
+          <button class="close-button"> X </button>
+        </div>
+    <% })} %>
   </div>
 
   <form class="form" action="/signup" method="post">
@@ -57,13 +64,14 @@
       <input type="password" name="password" id="password" required>
     </div>
 
-    <div class="form-input">
+    <!-- <div class="form-input">
       <label for="picture">Picture</label>
       <input type="url" name="picture" id="picture" required>
-    </div>
+    </div> -->
 
     <button type="submit">Submit</button>
   </form>
+  <script src="/static/extra.js"></script>
 </body>
 
 </html>

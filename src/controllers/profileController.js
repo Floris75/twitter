@@ -1,18 +1,51 @@
-const { response } = require("express");
 const profile = require("../models/profile");
 
 exports.load = (request, response) => {
-    const { id } = request.params;
-    profile.lastTweets (id, (error, tweets) => {
+    const { username } = request.params;
+    if (request.user != undefined) {
+        if (username === request.user.username) {
+            response.redirect("/myAccount");
+        }
+    }
+    profile.lastTweets (username, (error, tweets) => {
         if (error) {
             response.send (error.message);
         }
-        
-        tweets = [
-            {id:1, text: "juste un texte!", creation_date: "19/02/2021", user_id:1, username: "Bridou"},
-            {id:1, text: "juste un texte 2!", creation_date: "19/03/2021", user_id:1, username: "Bridou"},
-        ];
+        const cookie = request.cookies.authcookie;
+        let statut;
+        if (cookie) {
+            statut = "user";
+        }
+        else {
+            statut = "visitor";
+        }
+        const owner = false;
+        const update = false;
+        response.render("Profile.ejs", { tweets, statut, owner, update, user: request.user });
+    });
+}
 
-        response.render("Profile.ejs", { tweets });
+exports.tweetDetail = (request, response) => {
+    const { username, id } = request.params;
+    if (request.user != undefined) {
+        if (username === request.user.username) {
+            response.redirect(`/myAccount/${id}`);
+        }
+    }
+    profile.detail (username, id, (error, tweets) => {
+        if (error) {
+            response.send (error.message);
+        }
+        const cookie = request.cookies.authcookie;
+        let statut;
+        if (cookie) {
+            statut = "user";
+        }
+        else {
+            statut = "visitor";
+        }
+        const owner = false;
+        const update = false;
+        response.render("Profile.ejs", { tweets, statut, owner, update, user: request.user });
     });
 }
