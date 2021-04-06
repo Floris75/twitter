@@ -125,6 +125,23 @@
   padding: 3%;
   border-bottom: 1px solid grey;
 }
+.comments-comment #update {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comments-comment #update textarea {
+  margin: 2% auto;
+}
+.comments-comment #update input[type=submit] {
+  background-color: #1DA1F2;
+  border: 2px solid white;
+  border-radius: 30%;
+  color: white;
+}
+.comments-comment #update input[type=submit]:hover {
+  background-color: #3d5566;
+}
 .comments-comment:first-child {
   border-top: 1px solid grey;
 }

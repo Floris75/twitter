@@ -64,27 +64,26 @@ exports.tweetUpdate = (request, response) => {
         if (error) {
             response.send (error.message);
         }
-        response.redirect(`/myAccount/${id}`)
+        response.redirect(`/myAccount`)
     });
 }
 
 exports.tweeter = (request, response) => {
     const { username } = request.user;
     const { text } = request.body
-    let user;
+    let id;
     visitor.getByUsername(username, (error, result) => {
         if (error) {
             response.send (error.message);
         }
-        user = result;
-        console.log(user, result)
-    })
-    const id = user.id;
-    console.log(id);
-    connected_user.tweet (id, text, (error, result) => {
-        if (error) {
-            response.send (error.message);
+        else {
+            id = result[0].id;
+            connected_user.tweet (id, text, (error, result) => {
+                if (error) {
+                    response.send (error.message);
+                }
+                response.redirect("/");
         }
-        response.redirect("/")
-    });
+        )};
+    })
 }

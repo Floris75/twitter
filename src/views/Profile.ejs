@@ -95,10 +95,10 @@
                   </div>
                     <% if (owner) { %>
                       <div class="button-update">
-                        <form action="<%= `/myAccount/${tweet.id}/update` %>" method="GET">
+                        <form action="<%= `/myAccount/${tweet.tweet_id}/update` %>" method="GET">
                           <input type="submit" value="Modify">
                         </form>
-                        <form action="<%= `/myAccount/${tweet.id}/delete` %>" method="GET">
+                        <form action="<%= `/myAccount/${tweet.tweet_id}/delete` %>" method="GET">
                           <input type="submit" formmethod="delete" value="Delete">
                         </form>
                       </div>
@@ -108,7 +108,7 @@
           } 
           else {%>
             <div class="comments-comment">
-              <form action="<%= `/myAccount/${tweets[0].id}/update` %>" method="POST">
+              <form action="<%= `/myAccount/${tweets[0].tweet_id}/update` %>" id="update" method="POST">
                 <label for="text">Tweet :</label>
                 <textarea name="text" cols="30" rows="10"><%= tweets[0].text %></textarea>
                 <input type="submit" value="Update">
